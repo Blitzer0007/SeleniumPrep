@@ -12,7 +12,7 @@ public class getAttributeValue {
         driver.get("http://www.adactin.com/HotelApp/index.php");
         driver.findElement(By.id("username")).sendKeys("vengat16");
         driver.findElement(By.id("password")).sendKeys("Karthick");
-        String s = driver.findElement(By.id("username")).getAttribute("value");
+        String s = driver.findElement(By.id("username")).getAttribute("value"); //"innerText" for inside the slot element
         String s1 = driver.findElement(By.id("password")).getAttribute("value");
         System.out.println(s);
         System.out.println(s1);

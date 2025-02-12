@@ -16,7 +16,7 @@ public class ImplicitWait {
         driver.get("https://letcode.in/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20)); //One time declaration -- FindElement & FindElements works
         driver.findElement(By.linkText("Log in")).click();
-        driver.findElement(By.name("email")).sendKeys("ahsja@gmail.com"); //Waited 20 sec for element to be visible
+        driver.findElement(By.name("emal")).sendKeys("ahsja@gmail.com"); //Waited 20 sec for element to be visible
         driver.findElement(By.name("password")).sendKeys("Pass123$");
 
     }

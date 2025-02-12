@@ -15,7 +15,7 @@ public class RadioButtonHandling {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;                             // JavascriptExecutor interface typecasting
 
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
 //
 //        driver.get("https://www.makemytrip.com/");
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -31,10 +31,10 @@ public class RadioButtonHandling {
 
         //driver.findElement(By.xpath("//input[@value='Milk']")).click();
 
-        Dimension size = driver.findElement(By.xpath("//input[@name='group1']")).getSize();
+        Dimension size = driver.findElement(By.xpath("//input[@value='Wine']")).getSize();
         System.out.println(size);
 
-        js.executeScript("window.scrollBy(13,13)");
+        js.executeScript("window.scrollBy"+size+"");
 
         int count =driver.findElements(By.xpath("//input[@name='group1']")).size();  //Count of radio buttons
         System.out.println(count);

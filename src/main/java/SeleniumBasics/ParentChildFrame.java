@@ -17,7 +17,7 @@ public class ParentChildFrame {
         //Switched to Parent Frame -- by NAME firstFr
         driver.switchTo().frame("firstFr");
 
-        WebElement childframe = driver.findElement(By.cssSelector("iframe.has-background-white"));
+        WebElement childframe = driver.findElement(By.xpath("//iframe[@src='innerFrame']"));
 
         //Switched to Child Frame
 

@@ -1,9 +1,6 @@
 package SeleniumBasics;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.ArrayList;
@@ -18,7 +15,7 @@ public class JSExecutor2 {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;                             // JavascriptExecutor interface typecasting
 
-        driver.get("https://letcode.in/signin");
+        driver.get("https://letcode.in/");
 
 //        Fetching the Domain Name of the site. Tostring() change object to name.
         String DomainName = js.executeScript("return document.domain;").toString();
@@ -31,6 +28,8 @@ public class JSExecutor2 {
 //     Method document.title fetch the Title name of the site. Tostring() change object to name
         String TitleName = js.executeScript("return document.title;").toString();
         System.out.println("Title of the page = " + TitleName);
+
+ //       driver.switchTo().newWindow(WindowType.WINDOW);
 
 //      Navigate to new Page i.e to generate access page. (launch new url)
         js.executeScript("window.open()");                                                //Open new tab/window

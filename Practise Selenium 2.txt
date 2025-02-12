@@ -1,0 +1,436 @@
+Finding the WebElement
+WebElement textbox = driver.findElement(By.id(""));
+textbox.clear();
+textbox.sendkeys("Agni" , Keys.ENTER);
+
+1. Working with Textbox
+
+WebElement texbox = driver.findElement(By.id(""));
+String text = textbox.getAttribute("value"); --> To get the value of the input field
+System.out.println(text);
+
+2. Working with buttons
+
+Find the position of the point
+
+Point point = button.getLocation();
+int XValue = button.getX();
+int YValue = button.getY();
+
+Find the colour of the button
+WebElement colourbutton = driver.findElement(By.xpath(""));
+String colour = colourbutton.getCssValue("background-color");
+System.out.println("Button colour is " , colour);
+
+Find the Size of the button
+WebElement SizeButton = driver.findElement(By.xpath(""));
+int height = SizeButton.getSize().getHeight();
+int width = SizeButton.getSize().getWidth();
+
+3. Working with Button
+
+WebElement dropdown = driver.findElement(By.xpath("td/li"));
+Select select = new Select(dropdown);
+select.selectByvalue(2);
+select.selectByindex("2");
+select.selectByVisibleText(India);
+
+Iterating everydropdown value
+List<WebElement> numberofdropdown = dropdown.getOptions();
+To get the size of dropdwn
+numberofdropdown.size();
+
+WebElement multiselect = driver.findElement(By.xpath(""));
+Select multiselect = new Select(multiselect);
+multiselect.selectByIndex(1);
+multiselect.selectByIndex(2);
+multiselect.selectByIndex(3);
+
+or else we can directly use sendkeys
+dropdown1.senkeys("loadrunner");
+
+4. Working with alerts
+There are 3 types of alerts
+  1. normal alert 2.confirmation alert 3. prompt alert
+
+1. Normal Alert
+
+Alert alert = driver.SwitchTo().alert();
+alert.accept();
+driver.SwitchTo().defaultcontent();
+
+2. Confirmation alert
+Alert confirmalert= driver.SwitchTo().alert();
+confirmalert.dismiss();
+driver.SwitchTo().defaultcontent();
+
+3.Prompt Alert
+
+Alert promptbox= driver.SwitchTo().alert();
+promptbox.sendkeys("input");
+promptbox.accept();
+
+
+5. Working with Radiobutton
+WebElement radiobutton = driver.findElement(By.id("Radio-btn"));
+// to select the radiobutton is selected or not
+boolean radiobuttonstatus=radiobutton.isSelected();
+
+6.Working with Checkboxes
+Verifying the checkbox is selected or not
+
+WebElement checkbox = driver.findElement(By.id("checkbox"));
+boolean selectionstatus = checkbox.isSelected();
+
+5. WindowHandling
+
+Using Iterator
+
+Set<String> parent = driver.getWindowHandle();
+
+Set<String>allwindows = driver.getWindowHandles();
+Set<String> iterator = allwindows.iterator();
+
+while(iterator.hasNext())
+{
+  child_window = iterator.next();
+if(!parent.equal(child_window))
+{
+
+System.out.println(driver.SwitchTo().window(child_window).getTitle());
+driver.close();
+
+}
+}
+
+
+Using foreach loop
+Set<String> parent = driver.getWindowHandle();
+
+Set<String>allwindows = driver.getWindowHandles();
+
+foreach(String windows : allwindows)
+{
+
+if(!windows.equals(allwindows))
+{
+driver.SwitchTo().window(windows);
+driver.close()
+}
+
+}
+
+6. Handling Frames
+
+Frame is present in inside the html element
+
+driver.switchTo().frame(0);
+WebElement button1 = driver.findElement(By.id("Click"));
+button1.click();
+// to get the text from the button when click
+button1.getText();
+
+To navigate to nested frame
+driver.switchTo().frame(1);
+driver.switchTo().frame(2);
+WebElement button2 = driver.findElement(By.id("click2"));
+button2.click();
+
+To find number of frame
+List<WebElement> totalframes=driver.findElements(By.tagName("iframe"));
+int number = totalframes.size();
+System.out.println(number);
+
+After that , driver.switchTo().defaultcontent();
+
+
+7.Drag and Drop
+WebElement From= driver.findElement(By.id("drag"));
+WebElement To = driver.findElement(By.id("drop"));
+Actions actions = new Actions(driver);
+actions.clickandHold(From).moveToElement(To).Release(To).build().perform();
+
+Another way :
+actions.dragandDrop(From,To).build().perform();
+
+
+8. How to Take Tool Tip Text
+// To do get the title attribute
+WebElement name = driver.findElement(By.id("tooltip"));
+String tooltiptext = name.getAttribute("title");
+
+9.Working with Selectable
+
+List<WebElement> selectable = driver.findElements(By.xpath("//*[@id='selectable']/li));
+Actions actions = new Actions(driver);
+actions.keyDown(Keys.CONTROL).click(selectable.get(0)).
+click(selectable.get(1)).click(selectable(get(2)).build.perform();
+
+or
+actions.clickandHold(selectable.get(0));
+actions.clickandHold(selectable.get(1));
+actions.clickandHold(selectable.get(2));
+actions.clickandHold(selectable.get(3));
+actions.buildandPerform();
+
+
+10. AutoCompletion [ very important]
+List<WebElement> optionslist = driver.findElements(By.xpath(""));
+for(WebElement alllist : optionslist)
+
+{
+
+if(alllist.getText().equal("webservices"))
+{
+
+alllist.click();
+break;
+
+}
+}
+}
+
+
+11. Downloading a file
+WebElement downloadlink = driver.findElement(By.linktext("download"));
+downloadlink.click();
+File Filelocation = new File("local path");
+File[] file = Filelocation.listfiles();
+
+for(File file2 : file)
+{
+if(file2.getName().equals("")){
+
+System.out.println("File is found");
+break;
+}
+}
+
+12.Uploading a file
+WebElement uploadbutton = driver.findElement(By.xpath(""));
+uploadbutton.click
+
+Stringselection selection = new StringSelection();
+Toolkit.getDefaultToolkit().getSystemClipboard().SetContents(Selection,null);
+
+
+
+13. Working with Image
+
+How to find the image is broker or not
+--> by using natural-width css property
+if natural-width is 0, then the image is broken image
+
+
+13. Working with Links - Advanced concepts
+
+Find the link where it goes
+WebElement wheretogo = driver.findElement(By.id(""));
+wheretogo.getAttribute("href");
+
+Verify the broken link
+WebElement brokenlink= driver.findElement(By.id(""));
+brokenlink.click();
+String title = driver.getTitle();
+if(title.contains("404"){
+
+System.out.println("The link is broken");
+}
+
+To count the total number of links
+-->By using TagName("a");
+
+14. Working with datefield
+
+
+15. Working with sortables
+List<WebElement> elements = driver.findElements(By.xpath(""));
+WebElement fromelement =
+WebElement ToEelement =
+ actions.clickandHold(fromelement).movetoElement(ToElement).relase(ToElement).build().perform();
+
+
+Doubts : datefield xpath and table xpath
+
+
+
+
+-----------------------------------------------------------------------------------------
+Selenium Interview Tutorials
+1. Implicit wait
+
+An implicit wait is to tell WebDriver to poll the DOM for a certain amount of time when trying to find an element or elements if they are not immediately available
+It will be active till the driver dies. It means the wait will apply to each of the step in the selenium script
+
+Syntax : driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+Exception : NoSuchElementException
+
+2.Explicit wait
+
+By using the Explicit Wait command, the WebDriver is directed to wait until a certain condition occurs before proceeding with executing the code
+
+WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(4000))
+wait.until(ExpectedConditions.alertIsPresent());
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id(""))));
+		wait.until(ExpectedConditions.invisibilityOfElementWithText((By) driver.findElement(By.id("")), "text"));
+		wait.until(ExpectedConditions.elementToBeSelected(driver.findElement(By.xpath(""))));
+		wait.until(ExpectedConditions.presenceOfElementLocated((By) driver.findElement(By.xpath(""))));
+Exception:ElementNotVisibleException
+		
+3. Fluent wait
+
+Wait<WebDriver> wait1 =  new FluentWait<WebDriver> driver
+.withTimeout(Duration.ofSeconds(30))
+.pollingEvery(Duration.ofSeconds(60))
+.ignorning(NosuchElementException.class);
+
+Fluent Wait in Selenium marks the maximum amount of time for Selenium WebDriver to wait for a certain condition (web element) becomes visible. It also defines how frequently WebDriver will check if the condition appears before throwing the “ElementNotVisibleException”
+
+4. Difference between quit and close method
+close() closes only the current window on which Selenium is running automated tests. The WebDriver session, however, remains active
+On the other hand, the driver. quit() method closes all browser windows and ends the WebDriver session.
+
+5.Difference between get and navigate method
+
+get() is used to navigate particular URL(website) and wait till page load. 
+driver. navigate() is used to navigate to particular URL and does not wait to page load
+
+6.Ways to take screenshot in selenium
+
+Takescreenshot screenshot = (Takesscreenshot) driver;
+File Source = screenshot.getScreenshotAs(OUTPUTTYPE.FILE);
+File destination = new File("local file path of the directory");
+FileHandler.copy(source,destination);
+
+
+using Robot class
+Robot robot = new Robot();
+Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+Rectangle rectangle = new Rectangle(dimension);
+BufferedImage source = robot.createScreencapture(rectangle);
+File destination = new File("");
+ImageIo.write(source,"png",destination);
+
+7.Differenct ways to refresh the browser
+
+driver.get(driver.getCurrentUrl());
+driver.navigate().refresh();
+JavascriptExecutor executor = (JavascriptExecutor) driver;
+executor.executescript("location.reload");
+executor.executescript("history.go(0));
+Robot robot = new Robot();
+robot.keyPress(KeyEvent.VK_F5);
+robot.keyRelease(KeyEvent.VK_F5);
+
+8.Ways to Maximize the Browser
+
+driver.manage().window().maximize();
+
+Dimension dimension = new Dimension(1966,768);
+driver.manage().window().setSize(dimension);
+
+Chromeoptions options = new Chromeoptions();
+options.addarguments("--start-maximized");
+
+9.Handling authentication popups
+1. use a third party like AutoIT,Sikuli
+2.http://username:password@url.com 
+
+10.How to get google suggestions
+//*[@role='listbox']//following::li
+
+11.How to Print Google Search URLs
+
+List<WebElement> alllinks = driver.findElement(By.xpath("//a"));
+
+for(WebElement links : alllinks)
+{
+
+System.out.println(links.getAttribute("href");
+
+}
+
+12.Ways to Enter Key
+1.Sendkeys("term",Keys.ENTER);
+2.Robot class
+3.submit
+4.\n
+
+13.SwitchToActive Element without findelement
+Static WebElement q;
+driver.get():
+driver.SwtichTo().activeElement().sendkeys("");
+PageFactory.initElements(driver,activeElement.class);
+q.sendkeys("Trichy\n");
+
+14. Scroll a WebPage
+JavascriptExecutor executor = (JavascriptExecutor) driver;
+executor.executescript("window.scroll(0,450)","");
+executor.executescript("window.scroll(0,-450)","");
+
+Go to the bottom of the page
+executor.executescript(window.scrollTo(0,document.body.scrollHeight)","");
+executor.executescript("window.scroll(0,0)","");
+	
+Go to specific location
+executor.executescript("arguments[0].scrollIntoView(true);",link);
+
+Robot robot = new Robot();
+robot.KeyPress(KeyEvent.VK_PAGEDOWN);
+robot.KeyRelease(KeyEvent.VK_PAGEDOWN);
+robot.KeyPress(KeyEvent.VK_UP);
+robot.KeyRelease(KeyEvent.VK_UP);
+
+15. How to verify whether an element is underlined or not
+using the attribute called "text-decorative"
+
+16.How to send key inputs without sendkeys method
+1.Using javascriptexecutor
+executor.executescript("window.getElementsbyName("q")[0].value='text'","");
+using Robot class
+
+17.Selecting all the checkboxes
+//input[@type='checkbox']
+
+18.TestNG Annotation order
+@BeforeSuite
+@BeforeTest
+@BeforeClass
+@BeforeMethod
+@Test
+@AfterMethod
+@AfterClass
+@AfterTest
+@AfterSuite
+19.Execute a testcase multiple time with TestNG invocation count
+@Test(invocationcount=4)
+public void test(){
+System.out.println("print");
+}
+
+20.Set timeouts for a testcase in TestNG
+@Test(timeout=2000)
+public void test(){
+System.out.println("print");
+}
+
+21.How to handle exceptions in TestNG
+
+@Test(timeout=2000 ,exceptedconditions=ArrayIndexOutofException.class)
+public void test(){
+System.out.println("print");
+}
+
+22.Significance of AlwaysRun Attribute in TestNG
+
+@Test(timeout=2000 ,exceptedconditions=ArrayIndexOutofException.class)
+public void test1(){
+System.out.println("print");
+}
+
+@Test(timeout=2000 ,exceptedconditions=ArrayIndexOutofException.class)
+public void test2(dependsonmethod=test1,alwaysRun=true){
+System.out.println("print");
+}
+
+	
