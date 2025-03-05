@@ -5,7 +5,14 @@ import java.util.Arrays;
 public class Anagram {
 
     public static void main(String[] args) {
-        
+
+        //stack, queue, primary number, collections
+        //stacks linked list implementation, queues implementation
+        //diff btw equals and ==
+        //arrays.aslist JSON Validation*
+        //https://www.linkedin.com/pulse/unlocking-efficiency-exploring-java-8-stream-api-employee-kadam-xf2af/
+        //Above add emp details in list and fetch it using lambda & stream API
+
         String s1 = "Armyss";
         String s2 = "Marysj";
 
