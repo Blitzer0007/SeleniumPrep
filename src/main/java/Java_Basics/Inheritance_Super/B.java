@@ -6,6 +6,9 @@ public class B extends A {
     public B() {
 //        super();
         super(5);
+        super.funs();
+        String a1 = super.a;
+        System.out.println("a1");
         System.out.println("in B");
     }
 

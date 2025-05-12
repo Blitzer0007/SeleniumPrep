@@ -1,11 +1,15 @@
 package SeleniumBasics;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 import org.testng.annotations.DataProvider;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class CSVReader1 {
@@ -14,7 +18,7 @@ public class CSVReader1 {
 
         String line;
         String cellValue="";
-        Boolean blnfound=false;
+        boolean blnfound=false;
         BufferedReader br = null;
         int i,colNo=0;
 
@@ -55,9 +59,66 @@ public class CSVReader1 {
         return cellValue;
     }
 
+    public void updateCell(String testCaseID, String columnName, String newValue) throws IOException {
+        String csvFilePath = "./src/main/resources/register.csv";
+
+        List<String[]> allData;
+
+        // Read all rows
+        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+            allData = reader.readAll();
+        } catch (CsvException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (allData.isEmpty()) {
+            System.out.println("CSV is empty.");
+            return;
+        }
+
+        // Find column index
+        String[] header = allData.get(0);
+        int colIndex = -1;
+        for (int i = 0; i < header.length; i++) {
+            if (header[i].trim().equalsIgnoreCase(columnName)) {
+                colIndex = i;
+                break;
+            }
+        }
+
+        if (colIndex == -1) {
+            System.out.println("Column not found: " + columnName);
+            return;
+        }
+
+        // Update the row where TestCaseID matches
+        for (int i = 1; i < allData.size(); i++) {
+            String[] row = allData.get(i);
+            if (row[0].trim().equalsIgnoreCase(testCaseID)) {
+                // Ensure the row has enough columns
+                if (row.length <= colIndex) {
+                    row = Arrays.copyOf(row, colIndex + 1);
+                }
+                row[colIndex] = newValue;
+                allData.set(i, row);
+                break;
+            }
+        }
+
+        // Write updated data back to CSV
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvFilePath))) {
+            writer.writeAll(allData);
+        }
+
+        System.out.println("CSV cell updated successfully.");
+    }
+
+
     public static void main(String[] args) throws IOException {
         CSVReader1 CSV =new CSVReader1();
         CSV.getCellValue("naveen","Course");
+
+        CSV.updateCell("naveen", "Status", "Approved");
     }
 
 //    @DataProvider(name="AddEmployee")

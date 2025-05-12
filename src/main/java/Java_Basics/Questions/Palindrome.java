@@ -21,7 +21,7 @@ public class Palindrome {
         }
 
         String first = str.substring(0, 1);
-  //      System.out.println(first);
+  //    System.out.println(first);
         String last = str.substring(str.length() - 1, str.length());
 
         if (!first.equals(last)) {

@@ -98,6 +98,6 @@ public class LearnList {
         System.out.println("is empty "+ isEmpty);
 
 //        list.clear(); to clear the list
-
+//        list1.addAll(list2);                      //To merge two lists use Addall
     }
 }

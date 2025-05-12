@@ -6,6 +6,8 @@ public class this_Keyword {
 
 //        B obj=new B();
         B obj = new B(5);
+        int result = obj.addAndMultiply(2, 3, 4);
+        System.out.println(result); // Output: 20
     }
 
 }

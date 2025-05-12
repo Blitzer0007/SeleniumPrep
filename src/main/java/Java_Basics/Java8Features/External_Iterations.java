@@ -3,6 +3,7 @@ package Java_Basics.Java8Features;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class External_Iterations {
 
@@ -17,6 +18,19 @@ public class External_Iterations {
         Iterator<Integer> i = values.iterator();
         while (i.hasNext()) {
             System.out.println(i.next());
+        }
+
+        ListIterator<Integer> integerListIterator = values.listIterator();
+        boolean b1 = integerListIterator.hasNext();
+        System.out.println(b1);
+
+        boolean b = integerListIterator.hasPrevious();
+        System.out.println(b);
+        while (integerListIterator.hasNext()) {
+            System.out.println(integerListIterator.next());
+            if (integerListIterator.hasPrevious()){
+              //  System.out.println(integerListIterator.previous());
+            }
         }
 
         for (int j : values) {

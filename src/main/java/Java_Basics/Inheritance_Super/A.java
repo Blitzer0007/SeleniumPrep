@@ -2,6 +2,8 @@ package Java_Basics.Inheritance_Super;
 
 public class A {
 
+    String a = "jk";
+
     public A()
     {
         super();
@@ -13,6 +15,10 @@ public class A {
     {
         super();
         System.out.println("in A int");
+    }
+
+    public void funs(){
+        System.out.println("Fun");
     }
 
 }
